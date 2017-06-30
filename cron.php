@@ -1,7 +1,7 @@
 <?php
 
 /**
- * /usr/local/cpanel/3rdparty/bin/php -q /usr/local/cpanel/whostmgr/docroot/cgi/cpanel-account-dns-check/cron.php
+ * 30 2 * * * /usr/local/cpanel/3rdparty/bin/php -q /usr/local/cpanel/whostmgr/docroot/cgi/cpanel-account-dns-check/cron.php
  */
 $hostname = gethostname();
 ob_start();
