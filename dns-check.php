@@ -43,12 +43,19 @@ function check_valid_resolve_ip($ip, $domain) {
 
 function get_domain_ip_local_file($domain) {
     $file_lines = open_file_per_line('/etc/userdatadomains');
+    $file_ip_nat_lines = open_file_per_line('/var/cpanel/cpnat');
     foreach ($file_lines as $line) {
         $explode = explode('==', $line);
         $explode_two = explode(':', $explode[0]);
         if (trim($explode_two[0]) == trim($domain)) {
             $ip_port = $explode[5];
             $explode_ip = explode(':', $ip_port);
+            foreach ($file_ip_nat_lines as $line_ip_nat){
+                $explode_ip_nat = explode(' ', $line_ip_nat);
+                if($explode_ip_nat[0] == $explode_ip[0]){
+                    $explode_ip[0] = $explode_ip_nat[1];
+                }
+            }
             return array('ip' => $explode_ip[0], 'acc' => trim($explode_two[1]));
         }
     }
