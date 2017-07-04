@@ -10,3 +10,6 @@
 	/bin/rm -rvf /usr/local/cpanel/whostmgr/docroot/cgi/cpanel-account-dns-check/cPanel-DNS-Check-Account-WHM-Plugin-master
 	/bin/rm -f /usr/local/cpanel/whostmgr/docroot/cgi/cpanel-account-dns-check/master.zip
 	/usr/local/cpanel/bin/register_appconfig /usr/local/cpanel/whostmgr/docroot/cgi/cpanel-account-dns-check/cpanel-account-dns-check.conf
+
+Used by
+brasilwork.com.br
