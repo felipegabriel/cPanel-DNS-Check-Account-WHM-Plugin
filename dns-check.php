@@ -56,7 +56,7 @@ function get_domain_ip_local_file($domain) {
                     $explode_ip[0] = $explode_ip_nat[1];
                 }
             }
-            return array('ip' => $explode_ip[0], 'acc' => trim($explode_two[1]));
+            return array('ip' => $explode_ip[0], 'acc' => trim($explode_two[1]), 'reseller' => trim($explode[1]), 'type' => trim($explode[2]));
         }
     }
 }
@@ -84,8 +84,10 @@ $hostname = gethostname();
                     <table class="table">
                         <thead>
                             <tr>
+                                <td>Reseller</td>
                                 <td>User</td>
                                 <td>Domain</td>
+                                <td>Domain Type</td>
                                 <td>Local IP</td>
                                 <td></td>
                             </tr>
@@ -110,14 +112,28 @@ $hostname = gethostname();
                                     $domain = $hostname;
                                     $domain_local_acc['acc'] = 'root';
                                 }
+                                if(isset($_GET['reseller'])) {
+                                    if($_GET['reseller'] == $domain_local_acc['reseller']) {
                                 ?>
                                 <tr>
+                                    <td><?= $domain_local_acc['reseller'] ?></td>
                                     <td><?= $domain_local_acc['acc'] ?></td>
                                     <td><?= $domain ?></td>
                                     <td><?= $domain_local_acc['ip'] ?></td>
                                     <td><?= $ip_result_html ?><br></td>
                                 </tr>
                                 <?php
+                                    }
+                                } else {
+                                    // my apologies for this redundance
+                                ?>
+                                    <td><?= $domain_local_acc['reseller'] ?></td>
+                                    <td><?= $domain_local_acc['acc'] ?></td>
+                                    <td><?= $domain ?></td>
+                                    <td><?= $domain_local_acc['ip'] ?></td>
+                                    <td><?= $ip_result_html ?><br></td>
+                                <?php
+                                }
                                 $i++;
                             }
                             ?>
