@@ -50,9 +50,9 @@ function get_domain_ip_local_file($domain) {
         if (trim($explode_two[0]) == trim($domain)) {
             $ip_port = $explode[5];
             $explode_ip = explode(':', $ip_port);
-            foreach ($file_ip_nat_lines as $line_ip_nat){
+            foreach ($file_ip_nat_lines as $line_ip_nat) {
                 $explode_ip_nat = explode(' ', $line_ip_nat);
-                if($explode_ip_nat[0] == $explode_ip[0]){
+                if ($explode_ip_nat[0] == $explode_ip[0]) {
                     $explode_ip[0] = $explode_ip_nat[1];
                 }
             }
@@ -84,10 +84,9 @@ $hostname = gethostname();
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Reseller</td>
                                 <td>User</td>
+                                <td>Reseller User</td>
                                 <td>Domain</td>
-                                <td>Domain Type</td>
                                 <td>Local IP</td>
                                 <td></td>
                             </tr>
@@ -112,28 +111,15 @@ $hostname = gethostname();
                                     $domain = $hostname;
                                     $domain_local_acc['acc'] = 'root';
                                 }
-                                if(isset($_GET['reseller'])) {
-                                    if($_GET['reseller'] == $domain_local_acc['reseller']) {
                                 ?>
                                 <tr>
-                                    <td><?= $domain_local_acc['reseller'] ?></td>
                                     <td><?= $domain_local_acc['acc'] ?></td>
+                                    <td><?= $domain_local_acc['reseller'] ?></td>
                                     <td><?= $domain ?></td>
                                     <td><?= $domain_local_acc['ip'] ?></td>
                                     <td><?= $ip_result_html ?><br></td>
                                 </tr>
                                 <?php
-                                    }
-                                } else {
-                                    // my apologies for this redundance
-                                ?>
-                                    <td><?= $domain_local_acc['reseller'] ?></td>
-                                    <td><?= $domain_local_acc['acc'] ?></td>
-                                    <td><?= $domain ?></td>
-                                    <td><?= $domain_local_acc['ip'] ?></td>
-                                    <td><?= $ip_result_html ?><br></td>
-                                <?php
-                                }
                                 $i++;
                             }
                             ?>
